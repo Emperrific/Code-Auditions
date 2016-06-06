@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+function addMover(id,fname,lname){
+	if(!id || fname=="" || lname==""){
+		$("#response").text("");
+		return;
+	}
+	$.post("makeMover.php",
+	{
+		i: id,
+		f: fname,
+		l: lname
+	},
+	function(data, status){
+		$("#response").html(data);
+	});
+}
+</script>
+</head>
+<body>
+<h2>Add a Mover to the Database</h2>
+<form>
+Mover ID: <input type="number" name="ID"><br>
+First Name: <input type="text" name="fname"><br>
+Last Name: <input type="text" name="lname"><br>
+<input type="button" onclick="addMover(ID.value,fname.value,lname.value)" value="Add Mover">
+</form>
+<div id="response"></div>
+</body>
+</html>
